@@ -14,3 +14,28 @@ suites:
     run_list:
       - recipe[confyaml::default]
     attributes:
+      someapp:
+        database:
+          adapter: postgresql
+          encoding: unicode
+          pool: 5
+          database: somedatabase
+          username: myuser
+          password: mypass
+
+      confyaml:
+        files:
+
+          ip/address.yml:
+            root_key: ip_address
+            node_keys: ipaddress
+
+          cloud_info.json:
+            node_keys: cloud
+
+          network/interfaces.yml:
+
+          lsb.yml:
+          fqdn.yml:
+
+          someapp/database.yml:

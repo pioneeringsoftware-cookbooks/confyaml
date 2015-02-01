@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 #
 # Cookbook Name:: confyaml
-#        Recipe:: default
+#        Recipe:: files
 #
 #-------------------------------------------------------------------------------
 #
@@ -21,4 +21,24 @@
 #
 #-------------------------------------------------------------------------------
 
-include_recipe 'confyaml::files'
+node['confyaml']['files'].each do |key, value|
+  # This is where the "magic" happens. Interpret the key and value.
+  value ||= {}
+  value = {'node_keys' => value} if value.is_a?(String)
+  path = value['path'] || key
+  node_keys = value['node_keys'] || path[0...-File.extname(path).length]
+  path = File.join(value['root'] || node['confyaml']['root'], path)
+  node_keys = node_keys.split('/') if node_keys.is_a?(String)
+  attributes = node_keys.inject(node) { |node, node_key| node[node_key] }
+  root_key = value['root_key']
+  attributes = {root_key => attributes} if root_key
+
+  directory File.dirname(path) do
+    recursive true
+  end
+
+  template path do
+    source "conf#{File.extname(path)}.erb"
+    variables(attributes: attributes)
+  end
+end
