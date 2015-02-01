@@ -4,6 +4,7 @@ driver:
 
 provisioner:
   name: chef_zero
+  roles_path: roles
 
 platforms:
   - name: ubuntu-12.04
@@ -13,6 +14,7 @@ suites:
   - name: default
     run_list:
       - recipe[confyaml::default]
+      - role[somerole]
     attributes:
       someapp:
         database:
@@ -39,3 +41,6 @@ suites:
           fqdn.yml:
 
           someapp/database.yml:
+
+        roles:
+          roles/somerole.yml:

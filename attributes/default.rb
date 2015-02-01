@@ -5,3 +5,4 @@ default['confyaml']['root'] = '/etc/conf'
 
 # Does nothing by default.
 default['confyaml']['files'] = {}
+default['confyaml']['roles'] = {}

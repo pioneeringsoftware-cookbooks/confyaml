@@ -22,3 +22,4 @@
 #-------------------------------------------------------------------------------
 
 include_recipe 'confyaml::files'
+include_recipe 'confyaml::roles'
