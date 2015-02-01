@@ -3,13 +3,44 @@ driver:
   name: vagrant
 
 provisioner:
-  name: chef_solo
+  name: chef_zero
+  roles_path: roles
 
 platforms:
   - name: ubuntu-12.04
-  - name: centos-6.4
+  - name: centos-6.5
 
 suites:
   - name: default
     run_list:
+      - recipe[confyaml::default]
+      - role[somerole]
     attributes:
+      someapp:
+        database:
+          adapter: postgresql
+          encoding: unicode
+          pool: 5
+          database: somedatabase
+          username: myuser
+          password: mypass
+
+      confyaml:
+        files:
+
+          ip/address.yml:
+            root_key: ip_address
+            node_keys: ipaddress
+
+          cloud_info.json:
+            node_keys: cloud
+
+          network/interfaces.yml:
+
+          lsb.yml:
+          fqdn.yml:
+
+          someapp/database.yml:
+
+        roles:
+          roles/somerole.yml:

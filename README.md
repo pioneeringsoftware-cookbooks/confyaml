@@ -1,6 +1,18 @@
 # confyaml-cookbook
 
-TODO: Enter the cookbook description here.
+Creates YAML-based configuration files based on node attributes and roles.
+
+The node attribute `node['confyaml']['files']` defines a hash of key-value
+pairs. The key basically provides the name of the configuration file, including
+slash-separated sub-folders if necessary. The key also doubles as the default
+node sub-key path. Hence key of `a/b/c` selects `node['a']['b']['c']` and
+stores the resulting YAML or JSON at `a/b/c` under `/etc/conf`, automatically
+creating the sub-folders.
+
+The cookbook can also render JSON configuration files if you specify a `json`
+extension. It renders the JSON prettily. This is not just for beauty's sake; it
+also makes it easier to see differences when Chef compares old and new looking
+for changes.
 
 ## Supported Platforms
 
