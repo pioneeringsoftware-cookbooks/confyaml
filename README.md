@@ -1,6 +1,6 @@
 # confyaml-cookbook
 
-TODO: Enter the cookbook description here.
+Creates YAML-based configuration files based on node attributes and roles.
 
 The node attribute `node['confyaml']['files']` defines a hash of key-value
 pairs. The key basically provides the name of the configuration file, including
