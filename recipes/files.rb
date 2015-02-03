@@ -31,6 +31,13 @@ node['confyaml']['files'].each do |key, value|
   node_keys = node_keys.split('/') if node_keys.is_a?(String)
   attributes = node_keys.inject(node) { |node, node_key| node[node_key] }
   root_key = value['root_key']
+  unless root_key
+    root_keys = value['root_keys']
+    if root_keys
+      root_keys = root_keys.split('/') if root_keys.is_a?(String)
+      root_key = root_keys.inject(node) { |node, node_key| node[node_key] }
+    end
+  end
   attributes = {root_key => attributes} if root_key
   node.set['confyaml']['files'][key]['expand_path'] = File.expand_path(path)
 
