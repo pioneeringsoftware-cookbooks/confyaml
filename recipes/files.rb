@@ -32,7 +32,7 @@ node['confyaml']['files'].each do |key, value|
   attributes = node_keys.inject(node) { |node, node_key| node[node_key] }
   root_key = value['root_key']
   attributes = {root_key => attributes} if root_key
-  node['confyaml']['files'][key]['expand_path'] = File.expand_path(path)
+  node.set['confyaml']['files'][key]['expand_path'] = File.expand_path(path)
 
   directory File.dirname(path) do
     recursive true
