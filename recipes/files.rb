@@ -39,7 +39,8 @@ node['confyaml']['files'].each do |key, value|
     end
   end
   attributes = {root_key => attributes} if root_key
-  node.set['confyaml']['files'][key]['expand_path'] = File.expand_path(path)
+  path = File.expand_path(path)
+  node.default['confyaml']['files'][key]['expand_path'] = path
 
   directory File.dirname(path) do
     recursive true
