@@ -1,6 +1,6 @@
 name             'confyaml'
-maintainer       'YOUR_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Roy Ratcliffe'
+maintainer_email 'roy@pioneeringsoftware.co.uk'
 license          'All rights reserved'
 description      'Installs/Configures confyaml'
 long_description 'Installs/Configures confyaml'
