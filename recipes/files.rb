@@ -30,6 +30,7 @@ node['confyaml']['files'].each do |key, value|
   path = File.join(value['root'] || node['confyaml']['root'], path)
   node_keys = node_keys.split('/') if node_keys.is_a?(String)
   attributes = node_keys.inject(node) { |node, node_key| node[node_key] }
+  attributes = attributes.to_hash if attributes.respond_to?(:to_hash)
   root_key = value['root_key']
   unless root_key
     root_keys = value['root_keys']
